@@ -1,4 +1,4 @@
-package macgram.blackjackbackend.domain;
+package macgram.blackjackbackend.domain.card;
 
 import java.util.ArrayList;
 import java.util.Collections;

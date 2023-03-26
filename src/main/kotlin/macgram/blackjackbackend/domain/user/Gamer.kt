@@ -7,6 +7,3 @@ interface Gamer {
     fun calculate(): Int
     fun reset()
 }
-
-
-

@@ -6,4 +6,5 @@ interface Gamer {
     fun addCard(card: Card)
     fun calculate(): Int
     fun reset()
+
 }

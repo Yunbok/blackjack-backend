@@ -44,7 +44,7 @@ public class HoldCards {
 
     private int sum() {
         return cards.stream()
-                .filter(it -> !it.equalsAce())
+                .filter(it -> !it.isAce())
                 .map(Card::getNumber)
                 .map(Number::getScore)
                 .flatMapToInt(it -> IntStream.of(it[ONE]))
@@ -53,7 +53,7 @@ public class HoldCards {
 
     private boolean existsAce() {
         return cards.stream()
-                .anyMatch(Card::equalsAce);
+                .anyMatch(Card::isAce);
     }
 
     public void removeAll() {

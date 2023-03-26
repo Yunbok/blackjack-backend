@@ -1,6 +1,5 @@
 package macgram.blackjackbackend.domain.user;
 
-import macgram.blackjackbackend.domain.card.Card;
 import macgram.blackjackbackend.domain.card.HoldCards;
 
 import java.util.List;

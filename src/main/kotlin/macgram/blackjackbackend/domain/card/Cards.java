@@ -1,8 +1,6 @@
 package macgram.blackjackbackend.domain.card;
 
-import com.example.blackjack.domain.card.Card;
-import com.example.blackjack.domain.card.Number;
-import com.example.blackjack.domain.card.Pattern;
+import org.intellij.lang.annotations.Pattern;
 
 import java.util.*;
 

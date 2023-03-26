@@ -1,9 +1,5 @@
 package macgram.blackjackbackend.domain.card;
 
-import com.example.blackjack.domain.card.Card;
-import com.example.blackjack.domain.card.Number;
-import com.example.blackjack.domain.card.Pattern;
-
 import java.util.*;
 
 public class Cards {
@@ -20,8 +16,7 @@ public class Cards {
     }
 
     public static List<Card> shuffle() {
-        List<Card> copy = new ArrayList<>();
-        copy.addAll(cards);
+        List<Card> copy = new ArrayList<>(cards);
 
         Collections.shuffle(copy);
         return copy;

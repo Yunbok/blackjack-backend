@@ -1,6 +1,11 @@
 package macgram.blackjackbackend.domain.user;
 
+import macgram.blackjackbackend.domain.card.Card;
+import macgram.blackjackbackend.domain.card.HoldCards;
+
+import java.util.List;
 import java.util.Objects;
+import java.util.Queue;
 
 public class Dealer implements Gamer {
     public static final int MAX_SUM = 17;

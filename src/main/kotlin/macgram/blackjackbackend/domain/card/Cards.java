@@ -1,7 +1,5 @@
 package macgram.blackjackbackend.domain.card;
 
-import org.intellij.lang.annotations.Pattern;
-
 import java.util.*;
 
 public class Cards {
@@ -18,8 +16,7 @@ public class Cards {
     }
 
     public static List<Card> shuffle() {
-        List<Card> copy = new ArrayList<>();
-        copy.addAll(cards);
+        List<Card> copy = new ArrayList<>(cards);
 
         Collections.shuffle(copy);
         return copy;

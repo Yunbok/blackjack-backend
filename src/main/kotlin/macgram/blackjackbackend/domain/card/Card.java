@@ -3,8 +3,8 @@ package macgram.blackjackbackend.domain.card;
 import java.util.Objects;
 
 public class Card {
-    private Pattern pattern;
-    private Number number;
+    private final Pattern pattern;
+    private final Number number;
 
     public Card(final Pattern pattern, final Number number) {
         this.pattern = pattern;

@@ -1,6 +1,10 @@
 package macgram.blackjackbackend.domain.user;
 
+import macgram.blackjackbackend.domain.card.Card;
+import macgram.blackjackbackend.domain.card.HoldCards;
+
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 public class Player implements Gamer {

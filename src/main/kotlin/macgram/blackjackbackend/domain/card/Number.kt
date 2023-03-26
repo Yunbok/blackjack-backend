@@ -1,6 +1,6 @@
 package macgram.blackjackbackend.domain.card;
 
-enum class Number(score: IntArray) {
+enum class Number(val score: IntArray) {
     ACE(intArrayOf(1, 11)),
     TWO(intArrayOf(2)),
     THREE(intArrayOf(3)),

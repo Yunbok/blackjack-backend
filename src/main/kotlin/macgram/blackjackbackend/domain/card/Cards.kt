@@ -1,22 +1,11 @@
-public class Cards {
-    public const val cards = MutableListOf<Card>()
+package macgram.blackjackbackend.domain.card
 
-    companion object {
-        for (pattern : Pattern.values()) {
-            Number.values().forEach {
-                cards.add(Card(pattern, it))
-            }
-        }
+class Cards(list: MutableList<Card>) {
+    private val list: MutableList<Card>
+
+    init {
+        this.list = list
     }
 
-    private Cards() {
-    }
-
-    public fun shuffle() : List<Card> {
-        val copy = MutableListOf<Card>()
-        copy.shuffled()
-
-        return copy
-    }
-
+    fun getList(): List<Card> = this.list
 }

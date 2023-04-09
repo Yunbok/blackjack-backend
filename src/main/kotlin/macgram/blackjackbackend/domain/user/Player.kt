@@ -2,81 +2,64 @@ package macgram.blackjackbackend.domain.user
 
 import macgram.blackjackbackend.domain.card.Card
 import macgram.blackjackbackend.domain.card.HoldCards
-import java.math.BigDecimal
 
 class Player : Gamer {
     val MIN_MONEY = 0L
     val MAX_SUM = 21L
-    val cards : HoldCards = HoldCards()
+    val cards = HoldCards()
 
-    var money : BigDecimal = BigDecimal.ZERO
-    var battingMoney : BigDecimal = BigDecimal.ZERO
-    var continueFlag : Boolean = true
+    var money = 0L
+    var battingMoney = 0L
+    var continuable = true
 
-    fun Player(money : Long) {
-        this.money = BigDecimal.valueOf(money)
+    fun Player(money: Long) {
+        this.money = money
     }
 
-    fun batting(batting : Long) {
+    fun batting(batting: Long) {
         validateBatting(batting)
-        this.battingMoney = BigDecimal.valueOf(batting)
+        this.battingMoney = batting
     }
 
-    fun validateBatting(money : Long) {
+    fun validateBatting(money: Long) {
         if (money == MIN_MONEY) {
             throw IllegalArgumentException("배팅 금액은 0원 이상 이여야 합니다.")
         }
 
-        if (this.money.toLong() - money < MIN_MONEY) {
+        if (this.money - money < MIN_MONEY) {
             throw IllegalArgumentException("배팅 금액이 부족합니다.")
         }
     }
 
-    override fun addCard(card : Card) {
-        if (this.continueFlag) {
+    override fun addCard(card: Card) {
+        if (this.continuable) {
             this.cards.add(card)
         }
 
         if (calculate() >= MAX_SUM) {
-            this.continueFlag = false
+            this.continuable = false
         }
     }
 
-    override fun calculate() : Int {
+    override fun calculate(): Int {
         return this.cards.calculate()
     }
 
-    fun checkContinued(isContinued : Boolean) {
-        this.continueFlag = isContinued
-    }
-
-    fun over() : Boolean {
+    fun over(): Boolean {
         return this.cards.over()
     }
 
     override fun reset() {
         this.cards.removeAll()
-        this.continueFlag = true
-        this.battingMoney = BigDecimal.ZERO
+        this.continuable = true
+        this.battingMoney = 0L
     }
 
-    fun getCards() : List<Card>  {
-        return this.cards.getCards()
-    }
-
-    fun getBattingMoney() : Long {
-        return this.battingMoney.toLong()
-    }
-
-    fun isContinued() : Boolean {
-        return this.continueFlag
-    }
-
-    override fun toString() : String {
+    override fun toString(): String {
         return "Player{" +
                 "money=" + money +
                 ", cards=" + cards +
-                ", isContinued=" + continueFlag +
+                ", isContinued=" + continuable +
                 ", battingMoney=" + battingMoney +
                 '}'
     }

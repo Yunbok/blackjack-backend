@@ -4,9 +4,8 @@ import macgram.blackjackbackend.domain.user.Dealer
 import macgram.blackjackbackend.domain.user.Gamer
 import java.util.ArrayList
 
-import macgram.blackjackbackend.domain.card.Card;
-import macgram.blackjackbackend.domain.card.Cards;
-import macgram.blackjackbackend.domain.user.Player;
+import macgram.blackjackbackend.domain.card.Card
+import macgram.blackjackbackend.domain.user.Player
 
 
 class Game {
@@ -22,63 +21,65 @@ class Game {
     }
 
     fun removePlayer(player : Player) {
-        players.remove(player);
+        players.remove(player)
     }
 
     fun start() {
-        validateStart();
-        cards = generateCards();
-        distributeCard();
+        validateStart()
+        cards = generateCards()
+        distributeCard()
     }
 
     fun validateStart() {
-        if (players.stream().anyMatch { it.getBattingMoney() <= 0 }) {
-            throw IllegalArgumentException("배팅하지 않은 사용자가 존재 합니다.");
+        if (players.stream().anyMatch { it.battingMoney <= 0 }) {
+            throw IllegalArgumentException("배팅하지 않은 사용자가 존재 합니다.")
         }
     }
 
     fun continueDealerCard() {
-        dealer.continueCard(cards);
+        dealer.continueCard(cards)
     }
 
     fun isEnded() : Boolean {
         return players.stream()
-            .noneMatch(Player::isContinued);
+            .noneMatch { it.continuable }
     }
 
     fun distributeCard() {
         for (i in INIT until MAX) {
-            addDealerCard();
-            addPlayersCard();
+            addDealerCard()
+            addPlayersCard()
         }
     }
 
     fun addDealerCard() {
-        addCard(dealer);
+        addCard(dealer)
     }
 
     fun addPlayersCard() {
         players.stream()
-            .filter(Player::isContinued)
-            .forEach(this::addCard);
+            .filter { it.continuable }
+            .forEach(this::addCard)
     }
 
     fun generateCards() : ArrayDeque<Card> {
-        var cards : ArrayDeque<Card>  =  ArrayDeque();
-        cards.addAll(Cards.shuffle());
+        val cards : ArrayDeque<Card>  =  ArrayDeque()
 
-        return cards;
+//        TODO
+//        cards.addAll(Cards.shuffle())
+
+        return cards
     }
 
     fun getDealer() : Dealer {
-        return dealer;
+        return dealer
     }
 
     fun getPlayers() : List<Player> {
-        return players;
+        return players
     }
 
     private fun addCard(gamer : Gamer) {
-        gamer.addCard(cards.removeFirstOrNull());
+        cards.removeFirstOrNull()?.let { gamer.addCard(it) }
     }
 }

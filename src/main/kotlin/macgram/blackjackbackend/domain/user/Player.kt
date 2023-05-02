@@ -3,10 +3,9 @@ package macgram.blackjackbackend.domain.user
 import macgram.blackjackbackend.domain.card.Card
 import macgram.blackjackbackend.domain.card.HoldCards
 
-class Player : Gamer {
+class Player(val cards : HoldCards) : Gamer {
     val MIN_MONEY = 0L
     val MAX_SUM = 21L
-    val cards = HoldCards()
 
     var money = 0L
     var battingMoney = 0L

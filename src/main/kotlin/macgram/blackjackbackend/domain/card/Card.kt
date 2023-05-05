@@ -1,10 +1,18 @@
 package macgram.blackjackbackend.domain.card;
 
 class Card(
-    val pattern: Pattern,
-    val number: Number
+    private val pattern: Pattern,
+    private val number: Number
 ) {
     fun isAce(): Boolean {
-        return this.number == Number.ACE
+        return number == Number.ACE
+    }
+
+    fun getScore(): Int {
+        return number.score
+    }
+
+    override fun toString(): String {
+        return "Card(pattern=$pattern, number=$number)"
     }
 }

@@ -1,19 +1,18 @@
 package macgram.blackjackbackend.domain.user
 
 import macgram.blackjackbackend.domain.card.Card
-import macgram.blackjackbackend.domain.card.HoldCards
+import macgram.blackjackbackend.domain.card.Hands
 
-class Player(val cards : HoldCards) : Gamer {
-    val MIN_MONEY = 0L
-    val MAX_SUM = 21L
+class Player(var money: Long) : Gamer {
+    companion object {
+        const val MIN_MONEY = 0L
+        const val MAX_SUM = 21L
+    }
 
-    var money = 0L
+    var hands: Hands = Hands()
     var battingMoney = 0L
     var continuable = true
 
-    fun Player(money: Long) {
-        this.money = money
-    }
 
     fun batting(batting: Long) {
         validateBatting(batting)
@@ -32,7 +31,7 @@ class Player(val cards : HoldCards) : Gamer {
 
     override fun addCard(card: Card) {
         if (this.continuable) {
-            this.cards.add(card)
+            this.hands.add(card)
         }
 
         if (calculate() >= MAX_SUM) {
@@ -41,25 +40,21 @@ class Player(val cards : HoldCards) : Gamer {
     }
 
     override fun calculate(): Int {
-        return this.cards.calculate()
+        return this.hands.calScore()
     }
 
     fun over(): Boolean {
-        return this.cards.over()
+        return this.hands.isBusted()
     }
-
     override fun reset() {
-        this.cards.removeAll()
-        this.continuable = true
-        this.battingMoney = 0L
+        hands = Hands()
+        continuable = true
+        battingMoney = 0L
     }
 
     override fun toString(): String {
-        return "Player{" +
-                "money=" + money +
-                ", cards=" + cards +
-                ", isContinued=" + continuable +
-                ", battingMoney=" + battingMoney +
-                '}'
+        return "Player(money=$money, hands=$hands, battingMoney=$battingMoney, continuable=$continuable)"
     }
+
+
 }

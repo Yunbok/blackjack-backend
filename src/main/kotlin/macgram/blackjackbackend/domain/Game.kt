@@ -4,30 +4,34 @@ import macgram.blackjackbackend.domain.user.Dealer
 import macgram.blackjackbackend.domain.user.Gamer
 import java.util.ArrayList
 
-import macgram.blackjackbackend.domain.card.Card
+import macgram.blackjackbackend.domain.card.Deck
 import macgram.blackjackbackend.domain.user.Player
 
 
 class Game {
-    private val INIT : Int = 0
-    private val MAX : Int = 2
+    private val INIT: Int = 0
+    private val MAX: Int = 2
 
-    private val dealer : Dealer = Dealer()
-    private var players : MutableList<Player> = ArrayList()
-    lateinit var cards : ArrayDeque<Card>
+    val dealer: Dealer = Dealer()
+    var players: MutableList<Player> = ArrayList()
+    lateinit var deck: Deck
 
-    fun addPlayer(player : Player) {
+    fun addPlayer(player: Player) {
         players.add(player)
     }
 
-    fun removePlayer(player : Player) {
+    fun removePlayer(player: Player) {
         players.remove(player)
     }
 
     fun start() {
         validateStart()
-        cards = generateCards()
+        deck = generateCards()
+        deck.shuffle()
         distributeCard()
+        println(dealer)
+        println(players)
+
     }
 
     fun validateStart() {
@@ -37,10 +41,10 @@ class Game {
     }
 
     fun continueDealerCard() {
-        dealer.continueCard(cards)
+        dealer.continueCard(deck)
     }
 
-    fun isEnded() : Boolean {
+    fun isEnded(): Boolean {
         return players.stream()
             .noneMatch { it.continuable }
     }
@@ -62,24 +66,11 @@ class Game {
             .forEach(this::addCard)
     }
 
-    fun generateCards() : ArrayDeque<Card> {
-        val cards : ArrayDeque<Card>  =  ArrayDeque()
-
-//        TODO
-//        cards.addAll(Cards.shuffle())
-
-        return cards
+    fun generateCards(): Deck {
+        return Deck()
     }
 
-    fun getDealer() : Dealer {
-        return dealer
-    }
-
-    fun getPlayers() : List<Player> {
-        return players
-    }
-
-    private fun addCard(gamer : Gamer) {
-        cards.removeFirstOrNull()?.let { gamer.addCard(it) }
+    private fun addCard(gamer: Gamer) {
+        gamer.addCard(deck.pop())
     }
 }

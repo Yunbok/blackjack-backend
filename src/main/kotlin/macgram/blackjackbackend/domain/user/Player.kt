@@ -53,11 +53,8 @@ class Player(var money: Long) : Gamer {
     }
 
     override fun toString(): String {
-        return "Player{" +
-                "money=" + money +
-                ", cards=" + hands +
-                ", isContinued=" + continuable +
-                ", battingMoney=" + battingMoney +
-                '}'
+        return "Player(money=$money, hands=$hands, battingMoney=$battingMoney, continuable=$continuable)"
     }
+
+
 }

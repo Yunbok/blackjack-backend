@@ -1,8 +1,8 @@
 package macgram.blackjackbackend.domain.card
 
 enum class Pattern {
-    HART,
+    HEART,
     DIAMOND,
-    CLOVER,
-    SPADES
+    CLUB,
+    SPADE
 }

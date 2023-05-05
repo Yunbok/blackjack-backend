@@ -1,28 +1,36 @@
 package macgram.blackjackbackend.domain.user
 
 import macgram.blackjackbackend.domain.card.Card
-import macgram.blackjackbackend.domain.card.HoldCards
+import macgram.blackjackbackend.domain.card.Deck
+import macgram.blackjackbackend.domain.card.Hands
 
 class Dealer : Gamer {
-    private val maxSum = 17
-    private val cards = HoldCards()
+    var hands: Hands = Hands()
+
+    companion object {
+        const val MAX_SUM = 17
+    }
 
     override fun addCard(card: Card) {
-        cards.add(card)
+        hands.add(card)
     }
 
     override fun calculate(): Int {
-        return cards.calculate()
+        return hands.calScore()
     }
 
     override fun reset() {
-        cards.removeAll()
+        hands = Hands()
     }
 
-    fun continueCard(card: ArrayDeque<Card>) {
-        while (this.cards.calculate() < maxSum) {
-            this.cards.add(card.removeFirstOrNull())
+    fun continueCard(deck: Deck) {
+        while (hands.calScore() < MAX_SUM) {
+            hands.add(deck.pop())
         }
+    }
+
+    override fun toString(): String {
+        return "Dealer(hands=$hands)"
     }
 }
 

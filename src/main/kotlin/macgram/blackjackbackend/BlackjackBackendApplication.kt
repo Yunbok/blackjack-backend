@@ -18,7 +18,6 @@ fun main(args: Array<String>) {
 
     while (!game.isEnded()) {
         game.players
-            .stream()
             .filter { it.continuable }
             .forEach {
                 it.continuable = true

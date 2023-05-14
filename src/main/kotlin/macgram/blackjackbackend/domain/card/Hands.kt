@@ -25,7 +25,8 @@ class Hands {
     fun calScore(): Int {
         var sum = sum()
         val aceCount = countAce()
-        for (i in 1 .. aceCount) {
+
+        for (i in 1..aceCount) {
             if (!isOverBlackjack(sum))
                 return sum
             sum -= 10
@@ -38,16 +39,11 @@ class Hands {
     }
 
     private fun sum(): Int {
-        return hands.stream()
-            .mapToInt(Card::getScore)
-            .sum()
+        return hands.sumOf(Card::getScore)
     }
 
     private fun countAce(): Int {
-        return hands.stream()
-            .filter(Card::isAce)
-            .count()
-            .toInt()
+        return hands.count(Card::isAce)
     }
 
     fun getCards(): List<Card> {

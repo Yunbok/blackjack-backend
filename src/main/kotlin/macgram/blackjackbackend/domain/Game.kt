@@ -35,7 +35,7 @@ class Game {
     }
 
     fun validateStart() {
-        if (players.stream().anyMatch { it.battingMoney <= 0 }) {
+        if (players.any { it.battingMoney <= 0 }) {
             throw IllegalArgumentException("배팅하지 않은 사용자가 존재 합니다.")
         }
     }
@@ -45,8 +45,7 @@ class Game {
     }
 
     fun isEnded(): Boolean {
-        return players.stream()
-            .noneMatch { it.continuable }
+        return players.none { it.continuable }
     }
 
     fun distributeCard() {
@@ -61,8 +60,7 @@ class Game {
     }
 
     fun addPlayersCard() {
-        players.stream()
-            .filter { it.continuable }
+        players.filter(Player::continuable)
             .forEach(this::addCard)
     }
 

@@ -2,4 +2,8 @@ FROM thejunys/jdk:latest
 
 MAINTAINER <thejunys@naver.com>
 
-ADD . /workspace
+ARG JAR_FILE=./build/libs/*.jar
+ADD ${JAR_FILE} app.jar
+
+ENTRYPOINT ["nohup", "java", "-jar", "/app.jar"]
+

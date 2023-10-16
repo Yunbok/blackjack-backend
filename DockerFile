@@ -1,9 +1,4 @@
-FROM debian:stable-slim
+FROM thejunys/jdk:latest
 
 MAINTAINER <thejunys@naver.com>
 
-ENV TZ=Asia/Seoul
-
-RUN \
-  apt-get update && \
-  apt-get install -y vim tzdata openjdk-17-jdk;

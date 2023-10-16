@@ -2,3 +2,4 @@ FROM thejunys/jdk:latest
 
 MAINTAINER <thejunys@naver.com>
 
+ADD . /workspace

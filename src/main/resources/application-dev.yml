@@ -4,5 +4,3 @@ spring:
     url: jdbc:mariadb://mariadb:3306/sys?characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password: root
-
-

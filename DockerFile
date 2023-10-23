@@ -4,6 +4,10 @@ MAINTAINER <thejunys@naver.com>
 
 COPY ./build/libs/blackjack-backend-0.0.1-SNAPSHOT.jar app.jar
 
-ENV SPRING_PROFILES_ACTIVE=$ACTIVE
+ARG ACTIVE
+ENV SPRING_PROFILES_ACTIVE=ACIVE
+
+RUN ehco $ACTIVE
+RUN ehco $SPRING_PROFILES_ACTIVE
 
 ENTRYPOINT ["java", "-jar", "/app.jar", "&"]

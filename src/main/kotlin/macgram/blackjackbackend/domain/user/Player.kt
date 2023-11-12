@@ -3,7 +3,7 @@ package macgram.blackjackbackend.domain.user
 import macgram.blackjackbackend.domain.card.Card
 import macgram.blackjackbackend.domain.card.Hands
 
-class Player(var money: Long) : Gamer {
+class Player(var account: Account, var balance: Long) : Gamer {
     companion object {
         const val MIN_MONEY = 0L
         const val MAX_SUM = 21L
@@ -12,6 +12,7 @@ class Player(var money: Long) : Gamer {
     var hands: Hands = Hands()
     var battingMoney = 0L
     var continuable = true
+    val money: Long = 0L
 
 
     fun batting(batting: Long) {
@@ -46,6 +47,7 @@ class Player(var money: Long) : Gamer {
     fun over(): Boolean {
         return this.hands.isBusted()
     }
+
     override fun reset() {
         hands = Hands()
         continuable = true

@@ -1,6 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://mariadb:3306/sys?characterEncoding=UTF-8&serverTimezone=UTC
-    username: root
-    password: root
+    url: jdbc:mariadb://mariadb:3306/blackjack?characterEncoding=UTF-8&serverTimezone=UTC
+    username: blackjack
+    password: blackjack
+  jpa:
+    hibernate:
+      ddl-auto: update

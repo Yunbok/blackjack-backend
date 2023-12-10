@@ -1,10 +1,10 @@
 package macgram.blackjackbackend
 
-import macgram.blackjackbackend.domain.Game
-import macgram.blackjackbackend.domain.user.Player
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.web.bind.annotation.CrossOrigin
 
+@CrossOrigin(origins = ["*"])
 @SpringBootApplication
 class BlackjackBackendApplication
 

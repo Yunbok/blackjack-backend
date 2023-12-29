@@ -1,12 +1,12 @@
 package macgram.blackjackbackend.config
 
-import io.lettuce.core.RedisURI
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.redis.connection.RedisConnectionFactory
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory
 import org.springframework.data.redis.core.RedisTemplate
+import org.springframework.data.redis.serializer.RedisSerializer
 
 @Configuration
 class RedisConfig {
@@ -19,10 +19,12 @@ class RedisConfig {
     }
 
     @Bean
-    fun redisTemplate(redisConnectionFactory: RedisConnectionFactory): RedisTemplate<String, Any> {
-        val redisTemplate = RedisTemplate<String, Any>()
-        redisTemplate.setConnectionFactory(redisConnectionFactory)
+    fun <T> redisTemplate(redisConnectionFactory: RedisConnectionFactory): RedisTemplate<String, T> {
+        val redisTemplate = RedisTemplate<String, T>()
+        redisTemplate.keySerializer = RedisSerializer.string()
+        redisTemplate.valueSerializer = RedisSerializer.json()
 
+        redisTemplate.setConnectionFactory(redisConnectionFactory)
         return redisTemplate
     }
 }

@@ -1,6 +1,5 @@
 package macgram.blackjackbackend.domain.card;
 
-import java.util.*
 import kotlin.collections.ArrayList
 
 class Hands {
@@ -14,11 +13,11 @@ class Hands {
         hands.add(card)
     }
 
-    fun isBlackJack(): Boolean {
+    fun hasBlackJack(): Boolean {
         return calScore() == BLACKJACK
     }
 
-    fun isBusted(): Boolean {
+    fun hasBusted(): Boolean {
         return isOverBlackjack(calScore())
     }
 
@@ -44,10 +43,6 @@ class Hands {
 
     private fun countAce(): Int {
         return hands.count(Card::isAce)
-    }
-
-    fun getCards(): List<Card> {
-        return Collections.unmodifiableList(hands)
     }
 
     override fun toString(): String {

@@ -45,7 +45,7 @@ class Player(var account: Account, var balance: Long) : Gamer {
     }
 
     fun over(): Boolean {
-        return this.hands.isBusted()
+        return this.hands.hasBusted()
     }
 
     override fun reset() {

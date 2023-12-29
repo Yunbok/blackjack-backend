@@ -9,4 +9,4 @@ spring:
       ddl-auto: update
   data:
     redis:
-      url: redis://mypass@redis:6379/0
+      url: redis://blackjack@redis:6379/0

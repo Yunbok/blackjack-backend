@@ -7,3 +7,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  data:
+    redis:
+      url: redis://mypass@redis:6379/0

@@ -36,5 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 
-
-**/resources/*logcal.yml
+### local ###
+**/resources/*local.yml

@@ -1,5 +1,6 @@
 package macgram.blackjackbackend.controller.room
 
+import macgram.blackjackbackend.domain.room.Room
 import macgram.blackjackbackend.domain.user.Player
 import macgram.blackjackbackend.dto.LoginDto
 import macgram.blackjackbackend.serivce.AuthService
@@ -21,7 +22,7 @@ class RoomController(private val authService: AuthService, private val roomServi
     }
 
     @GetMapping
-    fun getRoom(): ResponseEntity<Any?> {
+    fun getRoom(): ResponseEntity<Room> {
         return ResponseEntity.ok(roomService.getRoom("room"))
     }
 }

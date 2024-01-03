@@ -1,9 +1,15 @@
 package macgram.blackjackbackend.domain.user
 
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
 import macgram.blackjackbackend.domain.card.Card
 import macgram.blackjackbackend.domain.card.Hands
 
-class Player(var account: Account, var balance: Long) : Gamer {
+class Player @JsonCreator constructor(
+    @JsonProperty("account") val account: Account,
+    @JsonProperty("balance") val balance: Long
+) : Gamer {
+
     companion object {
         const val MIN_MONEY = 0L
         const val MAX_SUM = 21L
@@ -45,7 +51,7 @@ class Player(var account: Account, var balance: Long) : Gamer {
     }
 
     fun over(): Boolean {
-        return this.hands.hasBusted()
+        return this.hands.isBusted()
     }
 
     override fun reset() {

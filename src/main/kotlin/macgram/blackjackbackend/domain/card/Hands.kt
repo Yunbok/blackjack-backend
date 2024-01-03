@@ -1,6 +1,7 @@
 package macgram.blackjackbackend.domain.card;
 
-import kotlin.collections.ArrayList
+import com.fasterxml.jackson.annotation.JsonIgnore
+import java.util.*
 
 class Hands {
     companion object {
@@ -13,11 +14,13 @@ class Hands {
         hands.add(card)
     }
 
-    fun hasBlackJack(): Boolean {
+    @JsonIgnore
+    fun isBlackJack(): Boolean {
         return calScore() == BLACKJACK
     }
 
-    fun hasBusted(): Boolean {
+    @JsonIgnore
+    fun isBusted(): Boolean {
         return isOverBlackjack(calScore())
     }
 
@@ -43,6 +46,11 @@ class Hands {
 
     private fun countAce(): Int {
         return hands.count(Card::isAce)
+    }
+
+    @JsonIgnore
+    fun getHands(): List<Card> {
+        return Collections.unmodifiableList(hands)
     }
 
     override fun toString(): String {

@@ -38,3 +38,5 @@ out/
 
 ### local ###
 **/resources/*local.yml
+
+logs/
